@@ -1,0 +1,2 @@
+# BaseLibsForAndroid
+BASE LIBS FOR ANDROID
