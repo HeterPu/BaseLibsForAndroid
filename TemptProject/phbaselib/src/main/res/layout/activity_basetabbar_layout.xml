@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.BaseTabBarActivity">
+
+    <com.heterpu.phbaselib.ui.view.NoScrollViewPager
+        android:id="@+id/vPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tablayout"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#8122d1"/>
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#129112"
+        app:tl_indicator_color="#391281"
+        app:tl_textSelectColor="#a91919"
+        app:tl_textUnselectColor="#b11191"
+        app:tl_underline_height="0dp"
+        app:tl_indicator_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+    </com.flyco.tablayout.CommonTabLayout>
+
+</android.support.constraint.ConstraintLayout>
