@@ -18,7 +18,7 @@ public abstract class UICol_Beans implements UICol_Section_Interface {
     public  static final int recommendedSpanCount = 2520;
 
 
-    UICol_Beans(int itemType,int resourceId, int spanCount){
+    public  UICol_Beans(int itemType,int resourceId, int spanCount){
         super();
         mItemType = itemType;
         mResourceId = resourceId;

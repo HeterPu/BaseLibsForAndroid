@@ -22,7 +22,7 @@ public abstract class UICol_Adapter<T extends UICol_Section_Interface, K extends
     /**
      * Display Type
      */
-    enum DisplayType {
+    public enum DisplayType {
         NORMAL,MIX,WATER_FLOW
     }
 
