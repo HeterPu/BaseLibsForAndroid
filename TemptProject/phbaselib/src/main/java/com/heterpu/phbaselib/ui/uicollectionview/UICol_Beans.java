@@ -101,11 +101,16 @@ public abstract class UICol_Beans implements UICol_Section_Interface {
 
 
 
+
+
+
+
+    //----------------- Other Beans START ---------------------------------------------
+
+
     /**
-     *  Other beans
+     *  Represent data for typeId and resource id.
      */
-
-
     public static class ResourceBind{
         public int getTypeId() {
             return typeId;
@@ -127,7 +132,9 @@ public abstract class UICol_Beans implements UICol_Section_Interface {
         int resourceId;
     }
 
-
+    /**
+     * Index path to flag specified position.
+     */
    public static class IndexPath{
        private int section;
        private int itemIndex;
@@ -154,9 +161,9 @@ public abstract class UICol_Beans implements UICol_Section_Interface {
         public void setItemIndex(int itemIndex) {
             this.itemIndex = itemIndex;
         }
-
-
-
-
     }
+
+
+
+    //----------------- Other Beans END ---------------------------------------------
 }

@@ -1,19 +1,16 @@
 package com.heterpu.phbaselib.ui.uicollectionview;
-
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
-
-
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
- *  PETER'S COPYRIGHT RESERVED.
+ *  Adapter can be subclassing, Easy to use，just like UICollectionView.
+ * @param <T> Class which implement UICol_Section_Interface.
+ * @param <K> Class which implement BaseViewHolder.
  */
 
 public abstract class UICol_Adapter<T extends UICol_Section_Interface, K extends BaseViewHolder> extends BaseMultiItemQuickAdapter<T,K> {
@@ -21,6 +18,9 @@ public abstract class UICol_Adapter<T extends UICol_Section_Interface, K extends
 
     /**
      * Display Type
+     * Normal -- normal grid layout
+     * Mix -- Complex layout
+     * WATER_FLOW  -- WaterFlow layout
      */
     public enum DisplayType {
         NORMAL,MIX,WATER_FLOW
@@ -33,6 +33,7 @@ public abstract class UICol_Adapter<T extends UICol_Section_Interface, K extends
 
 
     /**
+     * Construction method for initialization.
      */
     public  UICol_Adapter(){
         super(new ArrayList<T>());
@@ -40,6 +41,9 @@ public abstract class UICol_Adapter<T extends UICol_Section_Interface, K extends
     }
 
 
+    /**
+     *  Empty all data and  reload all data.
+     */
     public void reloadData() {
         // When data more than 0 , begin loading and set style.
         mData.clear();
@@ -97,6 +101,15 @@ public abstract class UICol_Adapter<T extends UICol_Section_Interface, K extends
 
 
     /**
+     * Reload specified section in recyclerView.
+     * @param section section you want to reload.
+     */
+    public void reloadDataForSection(int section){
+        // Continuing
+    }
+
+
+    /**
      * @param position Item Position IN ADAPTER
      * @return A rect for setting ItemDecoration , default sectionType (HEADER FOOTER) Return Rect(0,0,0,0)
      */
@@ -134,8 +147,8 @@ public abstract class UICol_Adapter<T extends UICol_Section_Interface, K extends
 
                 int topPadding = 0;
                 int leftPadding = 0;
-                int rightPadding = minimumInteritemSpacingForSection(model.getSectionIndex());
-                int bottomPadding = minimiumLineSpacingForSection(model.getSectionIndex());
+                int rightPadding = minimumInterItemSpacingForSection(model.getSectionIndex());
+                int bottomPadding = minimumLineSpacingForSection(model.getSectionIndex());
 
                 Rect sectionInset = sectionInsetForSection(model.getSectionIndex());
                 if(currentRow == 0) topPadding = sectionInset.top;
@@ -159,59 +172,118 @@ public abstract class UICol_Adapter<T extends UICol_Section_Interface, K extends
 
 
 
+
+    // ------------------ Data Sources Start -------------------------------------
+
+
+    /**
+     * @return Overridng by subclass to let adapter judge which layout to choose.
+     * Default is  DisplayType.NORMAL.
+     */
     protected DisplayType getDisplayType(){
         return DisplayType.NORMAL;
     }
 
+
     /**
-     * @return GET SECTION COUNT
+     * @return Get section Count in a Layout.
      */
     protected int numberOfSectionInView(){
-        // 通过获取最后的section值来获取section个数
         return 0;
     }
 
+
+    /**
+     * @param sectionType sectionType in a Layout.
+     * @param section designated section.
+     * @return Get item Count in a specified Layout.
+     */
     protected int numberOfItemInSection(UICol_Section_Interface.SectionType sectionType, int section){
         return 0;
     }
 
+
+    /**
+     * @param sectionType  sectionType in a Layout.
+     * @param section  designated section.
+     * @return Class which implement UICol_Section_Interface.
+     */
     protected T modelForHeaderFooterInSection(UICol_Section_Interface.SectionType sectionType,int section){
         return null;
     }
 
 
+    /**
+     * @param indexPath the specified position in Layout.
+     * @return  Class which implement UICol_Section_Interface.
+     */
     protected T modelForItemIndexPath(UICol_Beans.IndexPath indexPath){
         return null;
     }
 
 
-    protected int minimiumLineSpacingForSection(int section){
+    /**
+     * @param section  designated section
+     * @return  get the minimum Line Spacing in designated section.
+     */
+    protected int minimumLineSpacingForSection(int section){
         return 0;
     }
 
 
-    protected int minimumInteritemSpacingForSection(int section){
+    /**
+     * @param section  designated section.
+     * @return  get the minimum Inter Item in designated section.
+     */
+    protected int minimumInterItemSpacingForSection(int section){
         return 0;
     }
 
+
+    /**
+     * @param section  designated section.
+     * @return  get section inset in designated section.
+     */
     protected Rect sectionInsetForSection(int section){
         return   new Rect(0,0,0,0);
     }
 
 
+    /**
+     * Bind item data.
+     * @param sectionType  sectionType in a Layout.
+     * @param indexpath  the specified position in Layout.
+     * @param helper helper for binding data.
+     * @param data data to bind.
+     */
     protected void convertItemAtIndexPath(UICol_Section_Interface.SectionType sectionType, UICol_Beans.IndexPath indexpath,K helper,T data){
 
     }
 
 
+    /**
+     * Bind header footer data.
+     * @param sectionType  sectionType in a Layout.
+     * @param section the specified section in Layout.
+     * @param helper helper for binding data.
+     * @param data  data to bind.
+     */
     protected void convertHeaderFooterAtSection(UICol_Section_Interface.SectionType sectionType,int section,K helper,T data){
 
     }
 
 
+    /**
+     * @return allow use item calculation to make complex layout smooth. Default is true.
+     */
     protected boolean allowUseCacheItemsCalculation(){
         return true;
     }
+
+
+    // ------------------ Data Sources End -------------------------------------
+
+
 
     @Override
     protected void convert(K helper, T item) {

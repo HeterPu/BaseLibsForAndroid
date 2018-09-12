@@ -3,10 +3,10 @@ package com.heterpu.phbaselib.ui.uicollectionview;
 import android.graphics.Rect;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
-/**
- *  PETER'S COPYRIGHT RESERVED.
- */
 
+/**
+ *
+ */
 public interface UICol_Section_Interface extends MultiItemEntity {
 
     /**
@@ -37,11 +37,15 @@ public interface UICol_Section_Interface extends MultiItemEntity {
      */
     SectionType getSectionType();
     void setSectionType(SectionType type);
+
+
     int  getLayoutResourceId();
 
 
-
-    Rect getItemCacheRect();
+    /**
+     * For cache item calculation.
+     */
     void setItemCacheRect(Rect itemCache);
+    Rect getItemCacheRect();
 
 }
