@@ -20,11 +20,15 @@ public abstract class UICol_Beans implements UICol_Section_Interface {
 
     public  UICol_Beans(int itemType,int resourceId, int spanCount){
         super();
+        initData(itemType,resourceId,spanCount);
+    }
+
+
+    public void initData(int itemType,int resourceId, int spanCount){
         mItemType = itemType;
         mResourceId = resourceId;
         mSpanCount = spanCount;
     }
-
 
     /**
      * Flag cell type
@@ -32,6 +36,7 @@ public abstract class UICol_Beans implements UICol_Section_Interface {
     private int mItemType;
     private  int mSpanCount;
     private Rect mItemCache;
+
 
     @Override
     public int getItemType() {
@@ -125,6 +130,18 @@ public abstract class UICol_Beans implements UICol_Section_Interface {
         }
 
         public void setResourceId(int resourceId) {
+            this.resourceId = resourceId;
+        }
+
+
+        public ResourceBind(){
+            super();
+        }
+
+
+        public ResourceBind(int typeId,int resourceId){
+            super();
+            this.typeId = typeId;
             this.resourceId = resourceId;
         }
 

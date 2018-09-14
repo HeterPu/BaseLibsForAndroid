@@ -39,4 +39,5 @@ dependencies {
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     implementation ('com.alibaba.android:ultraviewpager:1.0.7.7@aar')
+    implementation "com.alibaba.android:vlayout:1.2.18@aar"
 }
