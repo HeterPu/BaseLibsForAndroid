@@ -28,7 +28,7 @@
 
         <activity
             android:name=".PermissionTestActivity"
-            android:label="sd"
+            android:label="baselib"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

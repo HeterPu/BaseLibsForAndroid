@@ -25,7 +25,6 @@ public class BasePermissionActivity extends AppCompatActivity {
 
 
     private PermissionCallBack permissionCallBack;
-    private PermissRequestion permissionRequestion;
 
     public BasePermissionActivity(){
     }
@@ -46,33 +45,25 @@ public class BasePermissionActivity extends AppCompatActivity {
 
     public void permission_allowed(int requstCode) {
        if ( null !=permissionCallBack){
-           if (!permissionCallBack.allowed(requstCode)){
-               // defalut allow configure
-           }
-       }else {
-           // defalut allow configure
+           if (permissionCallBack.allowed(requstCode))return;
        }
+       Log.i("Default allow configure","" + requstCode);
     }
 
 
     public void permission_onDenied(int requstCode) {
         // NOTE: Deal with a denied permission, e.g. by showing specific UI
         if ( null !=permissionCallBack){
-            if (!permissionCallBack.denied(requstCode)){
-                // defalut  configure
-                Toast.makeText(this,R.string.permission_camera_denied, Toast.LENGTH_SHORT).show();
-            }
-        }else {
-            // defalut deny configure
-            Toast.makeText(this,R.string.permission_camera_denied, Toast.LENGTH_SHORT).show();
+            if (permissionCallBack.denied(requstCode))return;
         }
+        Log.i("Default allow configure","" + requstCode);
     }
 
 
     public  void permission_showRationale(final PermissionRequest request, int requestCode) {
 
         if ( null !=permissionCallBack){
-            PermissRequestion requstion = new PermissRequestion() {
+            PermissionRequestion requstion = new PermissionRequestion() {
                 @Override
                 public void proceed() {
                     request.proceed();
@@ -83,31 +74,49 @@ public class BasePermissionActivity extends AppCompatActivity {
                     request.cancel();
                 }
             };
-
-            if (!permissionCallBack.rationale(requstion, requestCode)){
-                // defalut  configure
-                showRationaleDialog(R.string.permission_camera_rationale, request);
-            }
-        }else {
-            // defalut rationale configure
-            showRationaleDialog(R.string.permission_camera_rationale, request);
+            if (permissionCallBack.rationale(requstion, requestCode))return;
         }
+        // defalut rationale configure
+        showRationaleDialog(getPermissionRationaleTipFrom(requestCode), request);
     }
 
     public  void permission_onNeverAskAgain(int requstCode) {
 
         if ( null !=permissionCallBack){
-            if (!permissionCallBack.neverask(requstCode)){
-                // defalut neverask  configure
-
-                Toast.makeText(this, R.string.permission_camera_never_ask_again, Toast.LENGTH_SHORT).show();
-            }
-        }else {
-            // defalut neverask configure
-            Toast.makeText(this, R.string.permission_camera_never_ask_again, Toast.LENGTH_SHORT).show();
+            if (permissionCallBack.neverask(requstCode))return;
         }
+            // defalut neverask configure
+        Toast.makeText(this, getPermissionNeverAskFrom(requstCode), Toast.LENGTH_SHORT).show();
+    }
 
 
+
+    protected int getPermissionRationaleTipFrom(int requestCode){
+        switch (requestCode){
+            case MainActivityPermissionDispatcher.REQUEST_CAMERA:
+                return R.string.permission_camera_rationale;
+            case MainActivityPermissionDispatcher.REQUEST_READWRITECONTACTS:
+                return R.string.permission_contacts_rationale;
+            case MainActivityPermissionDispatcher.REQUEST_WRITEEXTERNALSTORAGE:
+                return R.string.permission_write_external_rationale;
+                default:
+                    return R.string.permission_rationale;
+
+        }
+    }
+
+    protected int getPermissionNeverAskFrom(int requestCode){
+        switch (requestCode){
+            case MainActivityPermissionDispatcher.REQUEST_CAMERA:
+                return R.string.permission_camera_never_ask_again;
+            case MainActivityPermissionDispatcher.REQUEST_READWRITECONTACTS:
+                return R.string.permission_contacts_never_ask_again;
+            case MainActivityPermissionDispatcher.REQUEST_WRITEEXTERNALSTORAGE:
+                return R.string.permission_write_external_never_ask_again;
+            default:
+                return R.string.permission_rationale;
+
+        }
     }
 
 
@@ -136,11 +145,11 @@ public class BasePermissionActivity extends AppCompatActivity {
     public interface PermissionCallBack{
         boolean allowed(int requestCode);
         boolean denied(int requestCode);
-        boolean rationale(PermissRequestion request, int requestCode);
+        boolean rationale(PermissionRequestion request, int requestCode);
         boolean neverask(int requestCode);
     }
 
-    public interface PermissRequestion{
+    public interface PermissionRequestion{
         void proceed();
         void cancel();
     }

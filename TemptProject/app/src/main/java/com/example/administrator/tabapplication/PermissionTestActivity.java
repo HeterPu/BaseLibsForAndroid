@@ -24,7 +24,7 @@ public class PermissionTestActivity extends BasePermissionActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             checkDevicePermissionWith(MainActivityPermissionDispatcher.REQUEST_CAMERA, new PermissionCallBack() {
+             checkDevicePermissionWith(MainActivityPermissionDispatcher.REQUEST_READWRITECONTACTS, new PermissionCallBack() {
                  @Override
                  public boolean allowed(int requestCode) {
                      return false;
@@ -36,7 +36,7 @@ public class PermissionTestActivity extends BasePermissionActivity {
                  }
 
                  @Override
-                 public boolean rationale(PermissRequestion request, int requestCode) {
+                 public boolean rationale(PermissionRequestion request, int requestCode) {
                      return false;
                  }
 
