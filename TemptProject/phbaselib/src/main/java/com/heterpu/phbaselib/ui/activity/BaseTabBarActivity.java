@@ -194,7 +194,13 @@ public class BaseTabBarActivity extends AppCompatActivity {
 
         //获取tab信息
         mTabEntitiesImp = getTabEntities();
-        mTabEntities.addAll(mTabEntitiesImp);
+
+
+        for (TabEntity entity:mTabEntitiesImp){
+           TabEntityReal realEntity = new TabEntityReal(entity.getTabTitle(),entity.getTabSelectedIcon(),entity.getTabUnselectedIcon());
+            mTabEntities.add(realEntity);
+        }
+
         mFragments = getFragments();
         mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         mTablayout.setTabData(mTabEntities);
@@ -291,7 +297,7 @@ public class BaseTabBarActivity extends AppCompatActivity {
     }
 
 
-    public class TabEntity implements CustomEntityInterface {
+    public static class TabEntity {
           String title;
           int selectedIcon;
           int unSelectedIcon;
@@ -306,8 +312,38 @@ public class BaseTabBarActivity extends AppCompatActivity {
         }
 
 
+        String getTabTitle() {
+            return title;
+        }
+
+        int getTabSelectedIcon() {
+            return selectedIcon;
+        }
+
+        int getTabUnselectedIcon() {
+            return unSelectedIcon;
+        }
+
+    }
+
+
+    public static class TabEntityReal implements CustomTabEntity {
+        String title;
+        int selectedIcon;
+        int unSelectedIcon;
+
+         TabEntityReal(String title,int selectedIcon,int unSelectedIcon){
+            this.title = title;
+            this.selectedIcon = selectedIcon;
+            this.unSelectedIcon = unSelectedIcon;
+        }
+
+        public TabEntityReal() {
+        }
+
+
         @Override
-        public String getTabTitle() {
+        public   String getTabTitle() {
             return title;
         }
 
@@ -323,7 +359,6 @@ public class BaseTabBarActivity extends AppCompatActivity {
 
     }
 
-    public interface CustomEntityInterface extends CustomTabEntity{
 
-    }
+
 }

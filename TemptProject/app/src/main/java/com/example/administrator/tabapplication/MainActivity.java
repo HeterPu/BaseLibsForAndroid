@@ -14,6 +14,7 @@ import com.heterpu.phbaselib.ui.activity.BaseTabBarActivity;
 
 import java.util.ArrayList;
 
+
 public class MainActivity extends BaseTabBarActivity {
 
 
@@ -27,12 +28,12 @@ public class MainActivity extends BaseTabBarActivity {
 
     @Override
     protected ArrayList<TabEntity> getTabEntities() {
-        ArrayList<TabEntity> mentites = new ArrayList<>();
+        ArrayList<TabEntity> entities = new ArrayList<>();
         for (int i = 0;i < mTitles.length;i++){
             TabEntity entity = new TabEntity(mTitles[i],mIconSelectedIds[i],mIconUnselectedIds[i]);
-            mentites.add(entity);
+            entities.add(entity);
         }
-        return mentites;
+        return entities;
     }
 
 
