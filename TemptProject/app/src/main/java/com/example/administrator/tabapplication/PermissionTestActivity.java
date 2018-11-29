@@ -1,5 +1,6 @@
 package com.example.administrator.tabapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -11,16 +12,15 @@ import com.heterpu.phbaselib.ui.module.permission.MainActivityPermissionDispatch
 
 public class PermissionTestActivity extends BasePermissionActivity {
 
-
-
-
     private  Button mButton;
+    private  Button mButton2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.permissionactivity);
         mButton = findViewById(R.id.button);
+        mButton2 = findViewById(R.id.button2);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +47,24 @@ public class PermissionTestActivity extends BasePermissionActivity {
              });
             }
         });
+
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
+    private void testPermission(){
+
+    }
+
+
+
+
+
 
 }

@@ -27,6 +27,13 @@
         </activity>
 
         <activity
+            android:name=".TestJumpAndPresentedActivity"
+            android:label="@string/title_activity_base_recyler_view_helper_test"
+            android:theme="@style/AppTheme">
+        </activity>
+
+
+        <activity
             android:name=".PermissionTestActivity"
             android:label="baselib"
             android:theme="@style/AppTheme">
