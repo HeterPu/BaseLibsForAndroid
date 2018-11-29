@@ -23,13 +23,13 @@
         <activity
             android:name=".BaseRecylerViewHelperTestA"
             android:label="@string/title_activity_base_recyler_view_helper_test"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppThemeDark">
         </activity>
 
         <activity
             android:name=".TestJumpAndPresentedActivity"
             android:label="@string/title_activity_base_recyler_view_helper_test"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppThemeDark">
         </activity>
 
 

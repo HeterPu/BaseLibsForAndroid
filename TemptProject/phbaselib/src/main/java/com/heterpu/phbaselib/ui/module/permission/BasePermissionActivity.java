@@ -1,27 +1,22 @@
 package com.heterpu.phbaselib.ui.module.permission;
-import android.Manifest;
+
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.EventLog;
+
 import android.util.Log;
 import android.widget.Toast;
 
 import com.heterpu.phbaselib.R;
+import com.heterpu.phbaselib.ui.activity.BaseActivity;
 
-import java.lang.ref.ReferenceQueue;
 
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnNeverAskAgain;
-import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
 
 
-public class BasePermissionActivity extends AppCompatActivity {
+
+public class BasePermissionActivity extends BaseActivity {
 
 
     private PermissionCallBack permissionCallBack;

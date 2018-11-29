@@ -52,7 +52,7 @@ public class PermissionTestActivity extends BasePermissionActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
-                startActivity(intent);
+               presentActivity(intent);
             }
         });
     }
