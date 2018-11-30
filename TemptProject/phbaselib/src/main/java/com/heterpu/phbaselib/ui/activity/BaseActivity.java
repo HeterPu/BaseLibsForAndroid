@@ -1,11 +1,36 @@
 package com.heterpu.phbaselib.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.heterpu.phbaselib.R;
 
+
 public class BaseActivity extends AppCompatActivity {
+
+    protected Toolbar mNaviBar;
+    protected ConstraintLayout mView;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.baseactivity_layout);
+        mNaviBar = findViewById(R.id.baseActivity_Bar);
+        mView =  findViewById(R.id.baseActivity_View);
+    }
+
+
+    protected boolean hideNavigationBar(){
+        return false;
+    }
+
+
+
+    // Convenient tool method
 
 
     @Override
