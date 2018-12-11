@@ -6,6 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.heterpu.phbaselib.R;
 
@@ -13,6 +20,7 @@ import com.heterpu.phbaselib.R;
 public class BaseActivity extends AppCompatActivity {
 
     protected Toolbar mNaviBar;
+    protected TextView mTitleView;
     protected ConstraintLayout mView;
 
     @Override
@@ -21,7 +29,104 @@ public class BaseActivity extends AppCompatActivity {
         setContentView(R.layout.baseactivity_layout);
         mNaviBar = findViewById(R.id.baseActivity_Bar);
         mView =  findViewById(R.id.baseActivity_View);
+        mTitleView = findViewById(R.id.baseActivity_Title);
+        int visible = hideNavigationBar() ? View.GONE:View.VISIBLE;
+        if (visible == View.VISIBLE){
+            mNaviBar.setVisibility(visible);
+            ConstraintLayout.LayoutParams paramContent = (ConstraintLayout.LayoutParams)mView.getLayoutParams();
+            ConstraintLayout.LayoutParams paramNavi = (ConstraintLayout.LayoutParams)mNaviBar.getLayoutParams();
+            paramContent.topMargin = paramNavi.height;
+            mView.setLayoutParams(paramContent);
+        }
+
+        // set custom view
+        if (getMainLayoutId()!=0){
+            int layoutId = getMainLayoutId();
+                ViewGroup contentV = (ViewGroup) this.getLayoutInflater().inflate(layoutId, null);
+                ConstraintLayout.LayoutParams param = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                contentV.setLayoutParams(param);
+                mView.addView(contentV);
+        }
+
+
+        // setNaviBar
+        int naviIcon = getBackNaviItemResourceId();
+        if (naviIcon != 0){
+            mNaviBar.setNavigationIcon(naviIcon);
+            mNaviBar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    leftNaviItemClick();
+                }
+            });
+        }
+        mNaviBar.setTitle("");
+        setSupportActionBar(mNaviBar);
+
     }
+
+
+    @Override
+    public void setTitle(CharSequence title) {
+        super.setTitle(title);
+        if (getIsTitleCenterInParent()){
+            mTitleView.setText(title);
+            mNaviBar.setTitle("");
+        }else {
+            mTitleView.setText("");
+            mNaviBar.setTitle(title);
+        }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        int menuResourceId = getRightNaviMenuResourcesId();
+        if (menuResourceId != 0){
+            getMenuInflater().inflate(menuResourceId,menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        rightNaviItemsClick(item);
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    protected void rightNaviItemsClick(MenuItem item){
+
+    }
+
+    protected int getRightNaviMenuResourcesId(){
+        return 0;
+    }
+
+    protected int getBackNaviItemResourceId(){
+        return R.mipmap.whiteback;
+    }
+
+
+    protected void leftNaviItemClick(){
+
+    }
+
+
+    protected boolean getIsTitleCenterInParent(){
+        return true;
+    }
+
+    protected  int getMainLayoutId(){
+        return 0;
+    }
+
+
+    protected  boolean getIsIgnoreContentTopInset(){
+        return true;
+    }
+
 
 
     protected boolean hideNavigationBar(){

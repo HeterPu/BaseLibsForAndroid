@@ -18,6 +18,11 @@ public class TestJumpAndPresentedActivity extends BaseActivity {
 
 
     @Override
+    protected boolean hideNavigationBar() {
+        return true;
+    }
+
+    @Override
     protected boolean isPresentedActivity() {
         return true;
     }
