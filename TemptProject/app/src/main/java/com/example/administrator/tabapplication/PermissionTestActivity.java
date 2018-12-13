@@ -45,53 +45,58 @@ public class PermissionTestActivity extends BaseApplicationActivity {
 
         //菜单点击事件（注意需要在setSupportActionBar(toolbar)之后才有效果）
 
-//        mNaviBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem menuItem) {
-//                return true;
-//            }
-//        });
+        mNaviBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                return true;
+            }
+        });
 
 
-////        setSupportActionBar(mNaviBar);
-//        mButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                checkDevicePermissionWith(MainActivityPermissionDispatcher.REQUEST_READWRITECONTACTS, new PermissionCallBack() {
-//                    @Override
-//                    public boolean allowed(int requestCode) {
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean denied(int requestCode) {
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean rationale(PermissionRequestion request, int requestCode) {
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean neverask(int requestCode) {
-//                        return false;
-//                    }
-//                });
-//            }
-//        });
-//
-//        mButton2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
-//                presentActivity(intent);
-//            }
-//        });
+//        setSupportActionBar(mNaviBar);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkDevicePermissionWith(MainActivityPermissionDispatcher.REQUEST_READWRITECONTACTS, new PermissionCallBack() {
+                    @Override
+                    public boolean allowed(int requestCode) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean denied(int requestCode) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean rationale(PermissionRequestion request, int requestCode) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean neverask(int requestCode) {
+                        return false;
+                    }
+                });
+            }
+        });
+
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
+                presentActivity(intent);
+            }
+        });
     }
 
-
 //    @Override
+//    protected boolean hideNavigationBar() {
+//        return true;
+//    }
+
+
+    //    @Override
 //    protected int getRightNaviMenuResourcesId() {
 //        return R.menu.main;
 //    }
