@@ -41,6 +41,11 @@ dependencies {
     implementation ('com.alibaba.android:vlayout:1.2.18@aar')
     implementation 'com.github.magiepooh:recycler-itemdecoration:1.1.1@aar'
 
+
+    implementation 'cn.bingoogolapple:bga-swipebacklayout:1.2.0@aar'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+
+
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

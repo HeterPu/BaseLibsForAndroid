@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.github.magiepooh.recycleritemdecoration.HorizontalItemDecoration;
 import com.heterpu.phbaselib.ui.module.permission.MainActivityPermissionDispatcher;
+import com.jaeger.library.StatusBarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,12 +38,11 @@ public class PermissionTestActivity extends BaseApplicationActivity {
     @Override
     protected void configuration() {
         super.configuration();
-
-
         //设置toolbar
 
 
         setTitle("哈啊啊");
+//        setStatusBarColor(Color.CYAN);
 
         //菜单点击事件（注意需要在setSupportActionBar(toolbar)之后才有效果）
 
@@ -84,13 +85,19 @@ public class PermissionTestActivity extends BaseApplicationActivity {
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
-                presentActivity(intent);
+                Intent intent = new Intent(PermissionTestActivity.this,PermissionTestActivity.class);
+                pushActivity(intent);
             }
         });
     }
 
 //    @Override
+//    protected boolean hideNavigationBar() {
+//        return true;
+//    }
+
+
+    //    @Override
 //    protected boolean hideNavigationBar() {
 //        return true;
 //    }
@@ -112,13 +119,6 @@ public class PermissionTestActivity extends BaseApplicationActivity {
     protected int getMainLayoutId() {
        return R.layout.permissionactivity;
     }
-
-
-
-
-
-
-
 
 
 }

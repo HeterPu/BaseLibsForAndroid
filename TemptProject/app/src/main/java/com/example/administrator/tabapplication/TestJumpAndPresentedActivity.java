@@ -1,10 +1,13 @@
 package com.example.administrator.tabapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.alibaba.android.vlayout.layout.FixAreaLayoutHelper;
 import com.heterpu.phbaselib.ui.activity.BaseActivity;
 
 public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
@@ -18,10 +21,16 @@ public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
 //
 
 
+//    @Override
+//    public boolean isSupportSwipeBack() {
+//        return true;
+//    }
+
     @Override
     protected void configuration() {
         super.configuration();
         setTitle("我爱河东狮");
+//        setStatusBarColor(Color.RED);
     }
 
     @Override
@@ -35,9 +44,9 @@ public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
 //        return true;
 //    }
 //
-    @Override
-    protected boolean isPresentedActivity() {
-        return true;
-    }
+//    @Override
+//    protected boolean isPresentedActivity() {
+//        return true;
+//    }
 }
 

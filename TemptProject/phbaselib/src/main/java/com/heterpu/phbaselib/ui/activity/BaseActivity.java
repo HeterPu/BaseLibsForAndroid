@@ -1,6 +1,7 @@
 package com.heterpu.phbaselib.ui.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -49,19 +50,26 @@ public class BaseActivity extends AppCompatActivity {
         }
 
 
-        // setNaviBar
-        int naviIcon = getBackNaviItemResourceId();
-        if (naviIcon != 0){
-            mNaviBar.setNavigationIcon(naviIcon);
-            mNaviBar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    leftNaviItemClick();
-                }
-            });
+        if (getSupportActionBar() == null) {
+            // setNaviBar
+            mNaviBar.setTitle("");
+            setSupportActionBar(mNaviBar);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+
+            int naviIcon = getBackNaviItemResourceId();
+            if (naviIcon != 0) {
+                mNaviBar.setNavigationIcon(naviIcon);
+                mNaviBar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        leftNaviItemClick();
+                    }
+                });
+            }
+
         }
-        mNaviBar.setTitle("");
-        setSupportActionBar(mNaviBar);
 
     }
 
@@ -76,6 +84,12 @@ public class BaseActivity extends AppCompatActivity {
             mTitleView.setText("");
             mNaviBar.setTitle(title);
         }
+    }
+
+
+
+    protected void goBack(){
+        if(!isTaskRoot())finish();
     }
 
 
