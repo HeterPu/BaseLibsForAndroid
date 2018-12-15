@@ -33,7 +33,12 @@ public class PermissionTestActivity extends BaseApplicationActivity {
     Button mButton2;
 
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        StatusBarUtil.setTransparent(this);
+    }
 
     @Override
     protected void configuration() {
@@ -46,12 +51,12 @@ public class PermissionTestActivity extends BaseApplicationActivity {
 
         //菜单点击事件（注意需要在setSupportActionBar(toolbar)之后才有效果）
 
-        mNaviBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                return true;
-            }
-        });
+//        mNaviBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem menuItem) {
+//                return true;
+//            }
+//        });
 
 
 //        setSupportActionBar(mNaviBar);
@@ -85,7 +90,7 @@ public class PermissionTestActivity extends BaseApplicationActivity {
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PermissionTestActivity.this,PermissionTestActivity.class);
+                Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
                 pushActivity(intent);
             }
         });
@@ -121,4 +126,13 @@ public class PermissionTestActivity extends BaseApplicationActivity {
     }
 
 
+    @Override
+    protected boolean hideNavigationBar() {
+        return true;
+    }
+
+    @Override
+    protected boolean preferStatusBarStyle() {
+        return true;
+    }
 }

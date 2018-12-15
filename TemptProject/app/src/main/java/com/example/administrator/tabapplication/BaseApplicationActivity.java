@@ -25,10 +25,10 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
 
         // 「必须在 Application 的 onCreate 方法中执行 BGASwipeBackHelper.init 来初始化滑动返回」
         // 在 super.onCreate(savedInstanceState) 之前调用该方法
-        initSwipeBackFinish();
+//        initSwipeBackFinish();
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-        configuration();
+//        configuration();
     }
 
 
@@ -135,7 +135,8 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
      * @param statusBarAlpha 透明度
      */
     public void setStatusBarColor(@ColorInt int color, @IntRange(from = 0, to = 255) int statusBarAlpha) {
-        StatusBarUtil.setColorForSwipeBack(this, color, statusBarAlpha);
+//        StatusBarUtil.setColorForSwipeBack(this, color, statusBarAlpha);
+        StatusBarUtil.setTransparent(this);
     }
 
 
@@ -147,7 +148,7 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
     protected void refreshNaviBarAndStatusBarState(){
         int statusBarAlpha = getStatusBarAlpha();
         int color = getNaviBarBackgroundColor();
-        mNaviBar.setBackgroundColor(color);
+//        mNaviBar.setBackgroundColor(color);
         setStatusBarColor(color,statusBarAlpha);
     }
 
