@@ -48,11 +48,5 @@ public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
 //    protected boolean isPresentedActivity() {
 //        return true;
 //    }
-
-
-    @Override
-    protected int getNaviBarBackgroundColor() {
-        return Color.BLACK;
-    }
 }
 

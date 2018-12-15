@@ -50,7 +50,7 @@ public class BaseActivity extends AppCompatActivity {
         }
 
 
-        if (!fullScreenMode() && getSupportActionBar() == null) {
+        if (getSupportActionBar() == null) {
             // setNaviBar
             mNaviBar.setTitle("");
             setSupportActionBar(mNaviBar);
@@ -182,11 +182,5 @@ public class BaseActivity extends AppCompatActivity {
     public void presentActivityResult(Intent intent,int requestCode){
         startActivityForResult(intent,requestCode);
         overridePendingTransition(R.anim.activity_bottom_top_in,R.anim.activity_bottom_top_out);
-    }
-
-
-    protected boolean fullScreenMode(){
-        return  true;
-
     }
 }
