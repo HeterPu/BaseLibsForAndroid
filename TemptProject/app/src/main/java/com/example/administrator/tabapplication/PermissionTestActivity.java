@@ -85,7 +85,7 @@ public class PermissionTestActivity extends BaseApplicationActivity {
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PermissionTestActivity.this,PermissionTestActivity.class);
+                Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
                 pushActivity(intent);
             }
         });
