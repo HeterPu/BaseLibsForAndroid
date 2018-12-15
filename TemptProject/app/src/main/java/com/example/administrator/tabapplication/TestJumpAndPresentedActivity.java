@@ -12,19 +12,6 @@ import com.heterpu.phbaselib.ui.activity.BaseActivity;
 
 public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
 
-//    @Override
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.testjumpactivity_layout);
-//
-//    }
-//
-
-
-//    @Override
-//    public boolean isSupportSwipeBack() {
-//        return true;
-//    }
 
     @Override
     protected void configuration() {
@@ -39,11 +26,28 @@ public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
     }
 
 
-    //    @Override
-//    protected boolean hideNavigationBar() {
-//        return true;
-//    }
-//
+        @Override
+    protected boolean hideNavigationBar() {
+        return true;
+    }
+
+    @Override
+    protected int getNaviBarBackgroundColor() {
+        return Color.BLACK;
+    }
+
+    @Override
+    protected boolean isFullScreenMode() {
+        return true;
+    }
+
+    @Override
+    protected boolean preferStatusBarStyle() {
+        return false;
+    }
+
+
+    //
 //    @Override
 //    protected boolean isPresentedActivity() {
 //        return true;

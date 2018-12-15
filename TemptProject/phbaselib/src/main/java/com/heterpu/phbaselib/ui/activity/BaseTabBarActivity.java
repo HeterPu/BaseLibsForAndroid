@@ -19,6 +19,7 @@ import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.heterpu.phbaselib.R;
+import com.heterpu.phbaselib.ui.module.permission.BasePermissionActivity;
 import com.heterpu.phbaselib.ui.view.NoScrollViewPager;
 import com.heterpu.phbaselib.utils.DisplayUtil;
 import com.heterpu.phbaselib.utils.ViewFindUtils;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class BaseTabBarActivity extends AppCompatActivity {
+public class BaseTabBarActivity extends BasePermissionActivity {
 
 
 
@@ -186,7 +187,9 @@ public class BaseTabBarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basetabbar_layout);
+
+
+//        setContentView(R.layout.activity_basetabbar_layout);
 
         View mDecorView = getWindow().getDecorView();
         mViewPager = ViewFindUtils.find(mDecorView,R.id.vPager);
@@ -239,6 +242,16 @@ public class BaseTabBarActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected boolean hideNavigationBar() {
+        return true;
+    }
+
+
+    @Override
+    protected int getMainLayoutId() {
+        return R.layout.activity_basetabbar_layout;
+    }
 
     private void initTabBarView(){
         mTablayout.setBackgroundColor(getTabBackgroundColor());

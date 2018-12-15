@@ -1,5 +1,6 @@
 package com.example.administrator.tabapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
@@ -11,6 +12,7 @@ import com.heterpu.phbaselib.ui.module.permission.BasePermissionActivity;
 import com.jaeger.library.StatusBarUtil;
 
 import butterknife.ButterKnife;
+import cn.bingoogolapple.swipebacklayout.BGAKeyboardUtil;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
 public abstract class BaseApplicationActivity extends BasePermissionActivity implements BGASwipeBackHelper.Delegate{
@@ -125,6 +127,8 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
      * @param color
      */
     protected void setStatusBarColor(@ColorInt int color) {
+
+
         setStatusBarColor(color, StatusBarUtil.DEFAULT_STATUS_BAR_ALPHA);
     }
 
@@ -135,7 +139,11 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
      * @param statusBarAlpha 透明度
      */
     public void setStatusBarColor(@ColorInt int color, @IntRange(from = 0, to = 255) int statusBarAlpha) {
-        StatusBarUtil.setColorForSwipeBack(this, color, statusBarAlpha);
+        if (isFullScreenMode()) {
+            StatusBarUtil.setTranslucentForImageViewInFragment(this,0, null);
+        }else {
+            StatusBarUtil.setColorForSwipeBack(this, color, statusBarAlpha);
+        }
     }
 
 
@@ -190,6 +198,16 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
     }
 
 
+    /**
+     * 设置沉浸式状态栏开关
+     *
+     *  default is 系统的主题色
+     */
+    protected boolean isFullScreenMode(){
+        return false;
+    }
+
+
     /* SET STATUS BAR END */
 
     protected void configuration(){
@@ -201,5 +219,18 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
     protected void leftNaviItemClick() {
         super.leftNaviItemClick();
         goBack();
+    }
+
+
+    @Override
+    public void pushActivity(Intent intent) {
+        BGAKeyboardUtil.closeKeyboard(this);
+        super.pushActivity(intent);
+    }
+
+    @Override
+    public void presentActivity(Intent intent) {
+        BGAKeyboardUtil.closeKeyboard(this);
+        super.presentActivity(intent);
     }
 }

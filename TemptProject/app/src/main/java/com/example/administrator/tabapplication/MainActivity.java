@@ -2,6 +2,7 @@ package com.example.administrator.tabapplication;
 
 import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -11,6 +12,7 @@ import com.example.administrator.tabapplication.fragments.TestFragment2;
 import com.example.administrator.tabapplication.fragments.TestFragment3;
 import com.example.administrator.tabapplication.fragments.TestFragment4;
 import com.heterpu.phbaselib.ui.activity.BaseTabBarActivity;
+import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 
@@ -81,4 +83,9 @@ public class MainActivity extends BaseTabBarActivity {
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        StatusBarUtil.setTranslucentForImageViewInFragment(this,0,null);
+    }
 }
