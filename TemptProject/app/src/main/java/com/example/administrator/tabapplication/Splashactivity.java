@@ -1,5 +1,6 @@
 package com.example.administrator.tabapplication;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
@@ -25,6 +26,10 @@ public class Splashactivity extends BaseApplicationActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
+                Intent rr = new Intent(Splashactivity.this,PermissionTestActivity.class);
+                Splashactivity.this.pushActivity(rr);
+                Splashactivity.this.finish();
                 mSwipeBackHelper.forwardAndFinish(MainActivity.class);
             }
         }, 2000);

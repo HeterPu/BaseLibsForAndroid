@@ -164,13 +164,18 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void pushActivity(Intent intent){
-        startActivity(intent);
+        pushActivity(intent,true);
     }
 
 
+    public void pushActivity(Intent intent,boolean animated){
+        startActivity(intent);
+        if (!animated)overridePendingTransition(0,0);
+    }
+
     public void presentActivity(Intent intent){
         startActivity(intent);
-        overridePendingTransition(R.anim.activity_bottom_top_in,R.anim.activity_bottom_top_out);
+
     }
 
     public void pushActivityForResult(Intent intent,int requestCode){
