@@ -16,8 +16,13 @@ public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
     @Override
     protected void configuration() {
         super.configuration();
-        setTitle("我爱河东狮");
 //        setStatusBarColor(Color.RED);
+    }
+
+
+    @Override
+    protected boolean getIsTitleCenterInParent() {
+        return false;
     }
 
     @Override
@@ -26,20 +31,20 @@ public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
     }
 
 
-        @Override
-    protected boolean hideNavigationBar() {
-        return true;
-    }
+//        @Override
+//    protected boolean hideNavigationBar() {
+//        return true;
+//    }
 
     @Override
     protected int getNaviBarBackgroundColor() {
         return Color.BLACK;
     }
 
-    @Override
-    protected boolean isFullScreenMode() {
-        return true;
-    }
+//    @Override
+//    protected boolean isFullScreenMode() {
+//        return true;
+//    }
 
     @Override
     protected boolean preferStatusBarStyle() {
@@ -47,7 +52,8 @@ public class TestJumpAndPresentedActivity extends BaseApplicationActivity {
     }
 
 
-    //
+
+
 //    @Override
 //    protected boolean isPresentedActivity() {
 //        return true;

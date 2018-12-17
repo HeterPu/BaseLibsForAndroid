@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+
+    // Activity animation duration
+
+    <integer name="activity_push_anim_duration">200</integer>
+    <integer name="activity_pop_anim_duration">200</integer>
+    <integer name="activity_present_anim_duration">300</integer>
+</resources>

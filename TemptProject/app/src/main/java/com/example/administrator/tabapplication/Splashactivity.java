@@ -28,9 +28,8 @@ public class Splashactivity extends BaseApplicationActivity {
             public void run() {
 
                 Intent rr = new Intent(Splashactivity.this,PermissionTestActivity.class);
-                Splashactivity.this.pushActivity(rr);
+                Splashactivity.this.pushActivity(rr,false);
                 Splashactivity.this.finish();
-                mSwipeBackHelper.forwardAndFinish(MainActivity.class);
             }
         }, 2000);
     }

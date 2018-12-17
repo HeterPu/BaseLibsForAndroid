@@ -101,18 +101,11 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
 
     @Override
     public void onBackPressed() {
-
-        // 当不支持返回手势时直接返回
-        if (!isSupportSwipeBack()) {
-            super.onBackPressed();
-            return;
-        }
-
         // 正在滑动返回的时候取消返回按钮事件
         if (mSwipeBackHelper.isSliding()) {
             return;
         }
-        mSwipeBackHelper.backward();
+        goBack();
     }
 
 
@@ -215,22 +208,17 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
     }
 
 
-    @Override
-    protected void leftNaviItemClick() {
-        super.leftNaviItemClick();
-        goBack();
-    }
+//    @Override
+//    protected void leftNaviItemClick() {
+////        super.leftNaviItemClick();
+//       goBack(false);
+//    }
 
 
+
     @Override
-    public void pushActivity(Intent intent) {
+    protected void beforeJumpPrepareWork(boolean isJumpForeward) {
+        super.beforeJumpPrepareWork(isJumpForeward);
         BGAKeyboardUtil.closeKeyboard(this);
-        super.pushActivity(intent);
-    }
-
-    @Override
-    public void presentActivity(Intent intent) {
-        BGAKeyboardUtil.closeKeyboard(this);
-        super.presentActivity(intent);
     }
 }

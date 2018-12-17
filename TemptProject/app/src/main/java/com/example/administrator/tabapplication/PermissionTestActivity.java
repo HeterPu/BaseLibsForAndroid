@@ -34,14 +34,13 @@ public class PermissionTestActivity extends BaseApplicationActivity {
 
 
 
-
     @Override
     protected void configuration() {
         super.configuration();
         //设置toolbar
 
 
-        setTitle("哈啊啊");
+//        setTitle("哈啊啊");
 //        setStatusBarColor(Color.CYAN);
 
         //菜单点击事件（注意需要在setSupportActionBar(toolbar)之后才有效果）
@@ -61,6 +60,7 @@ public class PermissionTestActivity extends BaseApplicationActivity {
                 checkDevicePermissionWith(MainActivityPermissionDispatcher.REQUEST_READWRITECONTACTS, new PermissionCallBack() {
                     @Override
                     public boolean allowed(int requestCode) {
+                        Log.e("","");
                         return false;
                     }
 
@@ -85,8 +85,11 @@ public class PermissionTestActivity extends BaseApplicationActivity {
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
+
+                 Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
+//                mSwipeBackHelper.forward(intent);
                 pushActivity(intent);
+//                 presentActivity(intent);
             }
         });
     }
@@ -121,4 +124,8 @@ public class PermissionTestActivity extends BaseApplicationActivity {
     }
 
 
+//    @Override
+//    protected int getBackNaviItemResourceId() {
+//        return 0;
+//    }
 }

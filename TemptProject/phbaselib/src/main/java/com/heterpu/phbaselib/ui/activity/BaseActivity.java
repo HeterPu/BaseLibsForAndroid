@@ -54,9 +54,9 @@ public class BaseActivity extends AppCompatActivity {
             // setNaviBar
             mNaviBar.setTitle("");
             setSupportActionBar(mNaviBar);
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            }
+//            if (getSupportActionBar() != null) {
+//                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//            }
 
             int naviIcon = getBackNaviItemResourceId();
             if (naviIcon != 0) {
@@ -87,9 +87,32 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+    public void setTitle_Color(int color) {
+        if (getIsTitleCenterInParent()){
+            mTitleView.setTextColor(color);
+        }else {
+            mNaviBar.setTitleTextColor(color);
+        }
+    }
+
+
+
 
     protected void goBack(){
-        if(!isTaskRoot())finish();
+       goBack(true);
+    }
+
+
+    protected void goBack(boolean animated){
+        // 判断是否是根activity,根activity不返回
+        if(!isTaskRoot())
+        {
+            if (isPresentedActivity()){
+                dismissActivity(animated);
+            }else {
+                popActivity(animated);
+            }
+        }
     }
 
 
@@ -124,7 +147,7 @@ public class BaseActivity extends AppCompatActivity {
 
 
     protected void leftNaviItemClick(){
-
+        goBack();
     }
 
 
@@ -151,41 +174,149 @@ public class BaseActivity extends AppCompatActivity {
 
     // Convenient tool method
 
-
-    @Override
-    public void finish() {
-        super.finish();
-        if (isPresentedActivity())overridePendingTransition(0,R.anim.activity_top_bottom_out);
-    }
-
-
     protected boolean isPresentedActivity() {
         return false;
     }
 
+
+
+    /*   ACTIVITY JUMP START  */
+
+
+    /**
+     *  Push activity like ios from left to
+     *  right
+     */
     public void pushActivity(Intent intent){
         pushActivity(intent,true);
     }
 
 
     public void pushActivity(Intent intent,boolean animated){
+        beforeJumpPrepareWork(true);
         startActivity(intent);
-        if (!animated)overridePendingTransition(0,0);
+        if (customJumpAnimation(true))return;
+        startPushAnimation(animated);
     }
 
+    public void pushActivityForResult(Intent intent,int requestCode,boolean animated){
+        startActivityForResult(intent,requestCode);
+        if (customJumpAnimation(true))return;
+        startPushAnimation(animated);
+    }
+
+    /**
+     *  Present activity like ios ，from bottom to top
+     */
     public void presentActivity(Intent intent){
+        presentActivity(intent,true);
+    }
+
+
+    public void presentActivity(Intent intent,boolean animated){
+        beforeJumpPrepareWork(true);
         startActivity(intent);
-
+        if (customJumpAnimation(true))return;
+        startPresentAnimation(animated);
     }
 
-    public void pushActivityForResult(Intent intent,int requestCode){
+    public void presentActivityResult(Intent intent,int requestCode,boolean animated){
         startActivityForResult(intent,requestCode);
-        startActivity(intent);
+        if (customJumpAnimation(true))return;
+        startPresentAnimation(animated);
     }
 
 
-    public void presentActivityResult(Intent intent,int requestCode){
-        startActivityForResult(intent,requestCode);
-        overridePendingTransition(R.anim.activity_bottom_top_in,R.anim.activity_bottom_top_out);
+    /**
+     *  Pop activity like ios from right to
+     *  left
+     */
+    public void popActivity(){
+        popActivity(true);
     }
+
+    public void popActivity(boolean animated){
+        beforeJumpPrepareWork(false);
+        finish();
+        if (customJumpAnimation(false))return;
+        startPopAnimation(animated);
+    }
+
+
+    /**
+     *  Pop activity like ios from top to
+     *  bottom
+     */
+    public void dismissActivity(){
+        dismissActivity(true);
+    }
+
+    public void dismissActivity(boolean animated){
+        beforeJumpPrepareWork(false);
+        finish();
+        if (customJumpAnimation(false))return;
+        startDismissAnimation(animated);
+    }
+
+
+    /**
+     *  Do some clean and prepareWork for jump.
+     */
+    protected void beforeJumpPrepareWork(boolean isJumpForeward){
+
+    }
+
+
+    /**
+     *  DEFAULT RETURN VALUE IS FALSE, YOU CAN CUSTOM THIS VALUE FROM OVERRIDING overridePendingTransition(),
+     *  AND RETURN TRUE TO CUSTOM JUMP ANIMATION.
+     */
+    protected boolean customJumpAnimation(boolean isJumpForeward){
+        return false;
+    }
+
+
+    /*   ACTIVITY JUMP END  */
+
+    /*   ANIMATION START  */
+
+    private void startPushAnimation(boolean animated){
+        if (!animated) {
+            overridePendingTransition(0, 0);
+        }else {
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+        }
+    }
+
+
+    private void startPresentAnimation(boolean animated){
+        if (!animated) {
+            overridePendingTransition(0, 0);
+        }else {
+            overridePendingTransition(R.anim.activity_bottom_top_in,R.anim.activity_bottom_top_out);
+        }
+    }
+
+
+    private void startPopAnimation(boolean animated){
+        if (!animated) {
+            overridePendingTransition(0, 0);
+        }else {
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+        }
+    }
+
+
+    private void startDismissAnimation(boolean animated){
+        if (!animated) {
+            overridePendingTransition(0, 0);
+        }else {
+            overridePendingTransition(0,R.anim.activity_top_bottom_out);
+        }
+    }
+
+
+    /*   ANIMATION END  */
+
+
 }
