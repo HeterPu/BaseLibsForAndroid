@@ -87,7 +87,7 @@ public class PermissionTestActivity extends BaseApplicationActivity {
             public void onClick(View v) {
 
                  Intent intent = new Intent(PermissionTestActivity.this,TestJumpAndPresentedActivity.class);
-//                mSwipeBackHelper.forward(intent);
+//                 mSwipeBackHelper.swipeBackward();
                 pushActivity(intent);
 //                 presentActivity(intent);
             }
