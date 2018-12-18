@@ -87,5 +87,6 @@ public class MainActivity extends BaseTabBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setTranslucentForImageViewInFragment(this,0,null);
+        showTabDotNumAt(2,2);
     }
 }
