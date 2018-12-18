@@ -3,5 +3,5 @@
            android:duration="@integer/activity_push_anim_duration"
            android:fromXDelta="0"
            android:fromYDelta="0"
-           android:toXDelta="-100%p"
+           android:toXDelta="-30%p"
            android:toYDelta="0"/>

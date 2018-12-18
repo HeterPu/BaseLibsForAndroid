@@ -27,7 +27,7 @@ public class Splashactivity extends BaseApplicationActivity {
             @Override
             public void run() {
 
-                Intent rr = new Intent(Splashactivity.this,MainActivity.class);
+                Intent rr = new Intent(Splashactivity.this,PermissionTestActivity.class);
                 Splashactivity.this.pushActivity(rr,false);
                 Splashactivity.this.finish();
             }
