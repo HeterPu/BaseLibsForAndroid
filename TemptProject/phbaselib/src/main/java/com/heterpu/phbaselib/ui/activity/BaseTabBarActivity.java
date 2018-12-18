@@ -344,6 +344,12 @@ public class BaseTabBarActivity extends BasePermissionActivity {
     }
 
 
+   public  void setShowMsgMargin(int position,float leftPadding,float bottomPadding){
+        mTablayout.setMsgMargin(position,leftPadding,bottomPadding);
+   }
+
+
+
     public static class TabEntityReal implements CustomTabEntity {
         String title;
         int selectedIcon;

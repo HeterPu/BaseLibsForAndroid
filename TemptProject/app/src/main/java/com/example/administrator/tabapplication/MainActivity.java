@@ -61,16 +61,20 @@ public class MainActivity extends BaseTabBarActivity {
 
     @Override
     protected int getTabBarHeight() {
-        return 80;
+        return 60;
     }
 
 
     @Override
     protected Point getTabIconSize() {
-        return new Point(60,30);
+        return new Point(40,20);
     }
 
 
+    @Override
+    protected int getTabIconTitlePadding() {
+        return 6;
+    }
 
     @Override
     protected boolean getPagerScrollEnable() {
@@ -87,6 +91,8 @@ public class MainActivity extends BaseTabBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setTranslucentForImageViewInFragment(this,0,null);
+
         showTabDotNumAt(2,2);
+        setShowMsgMargin(2,-8,0);
     }
 }
