@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -187,9 +188,6 @@ public class BaseTabBarActivity extends BasePermissionActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-//        setContentView(R.layout.activity_basetabbar_layout);
-
         View mDecorView = getWindow().getDecorView();
         mViewPager = ViewFindUtils.find(mDecorView,R.id.vPager);
         mTablayout = ViewFindUtils.find(mDecorView,R.id.tablayout);
@@ -204,9 +202,11 @@ public class BaseTabBarActivity extends BasePermissionActivity {
         }
 
         mFragments = getFragments();
+        refreshViewPagerLayout();
         mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         mTablayout.setTabData(mTabEntities);
         initTabBarView();
+
 
         mTablayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -251,6 +251,23 @@ public class BaseTabBarActivity extends BasePermissionActivity {
     protected int getMainLayoutId() {
         return R.layout.activity_basetabbar_layout;
     }
+
+
+
+    protected boolean ignoreBottomBarInsetHeight(){
+        return false;
+    }
+
+
+    private void refreshViewPagerLayout(){
+        if (ignoreBottomBarInsetHeight()){
+            ConstraintLayout.LayoutParams param = (ConstraintLayout.LayoutParams) mViewPager.getLayoutParams();
+            param.bottomMargin = DisplayUtil.dip2px(this,getTabBarHeight());
+            mViewPager.setLayoutParams(param);
+        }
+    }
+
+
 
     private void initTabBarView(){
         mTablayout.setBackgroundColor(getTabBackgroundColor());
@@ -381,6 +398,8 @@ public class BaseTabBarActivity extends BasePermissionActivity {
         }
 
     }
+
+
 
 
 

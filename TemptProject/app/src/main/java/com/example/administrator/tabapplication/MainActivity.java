@@ -88,9 +88,14 @@ public class MainActivity extends BaseTabBarActivity {
 
 
     @Override
+    protected boolean ignoreBottomBarInsetHeight() {
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setTranslucentForImageViewInFragment(this,0,null);
+//        StatusBarUtil.setTranslucentForImageViewInFragment(this,0,null);
 
         showTabDotNumAt(2,2);
         setShowMsgMargin(2,-8,0);

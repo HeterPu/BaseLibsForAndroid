@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,8 +67,7 @@ public class TestFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View contentV = inflater.inflate(R.layout.fragment_test_fragment1, container, false);
-        contentV.setBackgroundColor(Color.GREEN);
+        View contentV = inflater.inflate(getLayoutId(), container, false);
         return contentV;
     }
 
@@ -80,17 +80,45 @@ public class TestFragment1 extends Fragment {
 
 
     @Override
+    public void onStart() {
+        super.onStart();
+        Log.i("ClassNameIs " + getClass().getSimpleName(),"OnStart");
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+        Log.i( "ClassNameIs " + getClass().getSimpleName(),"OnResume");
     }
 
 
     @Override
     public void onPause() {
         super.onPause();
-
-
+        Log.i("ClassNameIs " +  getClass().getSimpleName(),"OnPause");
     }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i( "ClassNameIs " + getClass().getSimpleName(),"OnStop");
+    }
+
+
+    protected int getLayoutId(){
+        return  R.layout.fragment_test_fragment1;
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(getUserVisibleHint()){
+            Log.i("ClassNameIs " +  getClass().getSimpleName(),"Is  Visible ");
+        }
+        }
+
 
     /**
      * This interface must be implemented by activities that contain this
