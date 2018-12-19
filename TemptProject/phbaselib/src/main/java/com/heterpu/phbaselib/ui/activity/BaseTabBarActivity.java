@@ -203,6 +203,7 @@ public class BaseTabBarActivity extends BasePermissionActivity {
 
         mFragments = getFragments();
         refreshViewPagerLayout();
+        mViewPager.setOffscreenPageLimit(getPagerOffsetScreenLimit());
         mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         mTablayout.setTabData(mTabEntities);
         initTabBarView();
@@ -238,6 +239,11 @@ public class BaseTabBarActivity extends BasePermissionActivity {
 
             }
         });
+    }
+
+
+    protected int getPagerOffsetScreenLimit(){
+        return 1;
     }
 
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.tabapplication.R;
+import com.heterpu.phbaselib.ui.view.PagerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +21,7 @@ import com.example.administrator.tabapplication.R;
  * Use the {@link TestFragment1#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TestFragment1 extends Fragment {
+public class TestFragment1 extends PagerFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,12 +64,10 @@ public class TestFragment1 extends Fragment {
         }
     }
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View contentV = inflater.inflate(getLayoutId(), container, false);
-        return contentV;
+    protected int getLayoutId() {
+        return R.layout.fragment_test_fragment1;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -79,46 +78,43 @@ public class TestFragment1 extends Fragment {
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.i("ClassNameIs " + getClass().getSimpleName(),"OnStart");
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Log.i("ClassNameIs " + getClass().getSimpleName(),"OnStart");
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        Log.i( "ClassNameIs " + getClass().getSimpleName(),"OnResume");
+//    }
+//
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        Log.i("ClassNameIs " +  getClass().getSimpleName(),"OnPause");
+//    }
+//
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        Log.i( "ClassNameIs " + getClass().getSimpleName(),"OnStop");
+//    }
+
+
+//    protected int getLayoutId(){
+//        return  R.layout.fragment_test_fragment1;
+//    }
+
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Log.i( "ClassNameIs " + getClass().getSimpleName(),"OnResume");
+    protected void onFragmentVisibleChange(boolean isVisible) {
+        super.onFragmentVisibleChange(isVisible);
+        Log.i("ClassNameIs " +  getClass().getSimpleName(),"Is  Visible " +isVisible);
     }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.i("ClassNameIs " +  getClass().getSimpleName(),"OnPause");
-    }
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.i( "ClassNameIs " + getClass().getSimpleName(),"OnStop");
-    }
-
-
-    protected int getLayoutId(){
-        return  R.layout.fragment_test_fragment1;
-    }
-
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(getUserVisibleHint()){
-            Log.i("ClassNameIs " +  getClass().getSimpleName(),"Is  Visible ");
-        }
-        }
-
 
     /**
      * This interface must be implemented by activities that contain this

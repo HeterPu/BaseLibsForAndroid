@@ -76,6 +76,12 @@ public class MainActivity extends BaseTabBarActivity {
         return 6;
     }
 
+
+    @Override
+    protected int getPagerOffsetScreenLimit() {
+        return 3;
+    }
+
     @Override
     protected boolean getPagerScrollEnable() {
         return true;
