@@ -79,7 +79,7 @@ public class MainActivity extends BaseTabBarActivity {
 
     @Override
     protected int getPagerOffsetScreenLimit() {
-        return 3;
+        return 1;
     }
 
     @Override
