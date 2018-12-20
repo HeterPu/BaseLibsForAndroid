@@ -46,7 +46,20 @@ public class PagerFragment extends Fragment {
         }
         View view = inflater.inflate(getMainLayoutId(), container, false);
         mContentView = view;
+        onCreatingView(inflater,container,savedInstanceState,view);
         return view ;
+    }
+
+
+    /**
+     *
+     * @param inflater inflater
+     * @param container container
+     * @param savedInstanceState saveInState
+     * @param onCreatingView view which is creating.
+     */
+    protected void onCreatingView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState ,View onCreatingView) {
+
     }
 
 
