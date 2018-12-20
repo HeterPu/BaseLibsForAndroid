@@ -18,6 +18,13 @@ public final class MainActivityPermissionDispatcher {
     public static final int REQUEST_WRITEEXTERNALSTORAGE = 2;
     private static final String[] PERMISSION_WRITEEXTERNALSTORAGE = new String[] {"android.permission.WRITE_EXTERNAL_STORAGE"};
 
+    public static final int REQUEST_RECORDAUDIO = 3;
+    private static final String[] PERMISSION_RECORDAUDIO = new String[] {"android.permission.RECORD_AUDIO"};
+
+    public static final int REQUEST_CALL_PHONE = 4;
+    private static final String[] PERMISSION_CALL_PHONE = new String[] {"android.permission.CALL_PHONE"};
+
+
 
     private MainActivityPermissionDispatcher() {
     }
@@ -31,6 +38,10 @@ public final class MainActivityPermissionDispatcher {
                 return PERMISSION_READWRITECONTACTS;
             case REQUEST_WRITEEXTERNALSTORAGE:
                 return PERMISSION_WRITEEXTERNALSTORAGE;
+            case REQUEST_RECORDAUDIO:
+                return PERMISSION_RECORDAUDIO;
+            case REQUEST_CALL_PHONE:
+                return PERMISSION_CALL_PHONE;
             default:
                 return new String[]{};
         }
