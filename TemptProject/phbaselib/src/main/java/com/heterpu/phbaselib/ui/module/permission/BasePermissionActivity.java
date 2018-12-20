@@ -94,6 +94,10 @@ public class BasePermissionActivity extends BaseActivity {
                 return R.string.permission_contacts_rationale;
             case MainActivityPermissionDispatcher.REQUEST_WRITEEXTERNALSTORAGE:
                 return R.string.permission_write_external_rationale;
+            case MainActivityPermissionDispatcher.REQUEST_RECORDAUDIO:
+                return R.string.permission_record_audio_rationale;
+            case MainActivityPermissionDispatcher.REQUEST_CALL_PHONE:
+                return R.string.permission_call_phone_rationale;
                 default:
                     return R.string.permission_rationale;
 
@@ -108,6 +112,10 @@ public class BasePermissionActivity extends BaseActivity {
                 return R.string.permission_contacts_never_ask_again;
             case MainActivityPermissionDispatcher.REQUEST_WRITEEXTERNALSTORAGE:
                 return R.string.permission_write_external_never_ask_again;
+            case MainActivityPermissionDispatcher.REQUEST_RECORDAUDIO:
+                return R.string.permission_record_audio_never_ask_again;
+            case MainActivityPermissionDispatcher.REQUEST_CALL_PHONE:
+                return R.string.permission_call_phone_never_ask_again;
             default:
                 return R.string.permission_rationale;
 

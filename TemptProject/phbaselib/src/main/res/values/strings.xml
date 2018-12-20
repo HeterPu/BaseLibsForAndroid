@@ -16,11 +16,17 @@
     <string name="permission_camera_rationale">应用需要相机权限以使用完整功能.</string>
     <string name="permission_contacts_rationale">应用需要联系人权限以使用完整功能.</string>
     <string name="permission_write_external_rationale">应用需要存储权限以使用完整功能.</string>
+    <string name="permission_record_audio_rationale">应用需要录音权限以使用完整功能.</string>
+    <string name="permission_call_phone_rationale">应用需要打电话权限以使用完整功能.</string>
+
 
     <string name="permission_never_ask_again">请到设置-权限管理中开启权限，以使用完整功能.</string>
     <string name="permission_camera_never_ask_again">请到设置-权限管理中开启相机访问权限，以使用完整功能.</string>
     <string name="permission_contacts_never_ask_again">请到设置-权限管理中开启联系人权限，以使用完整功能.</string>
     <string name="permission_write_external_never_ask_again">请到设置-权限管理中开启文件设备读取权限，以使用完整功能.</string>
+    <string name="permission_record_audio_never_ask_again">请到设置-权限管理中开启录音权限，以使用完整功能.</string>
+    <string name="permission_call_phone_never_ask_again">请到设置-权限管理中开启打电话权限，以使用完整功能.</string>
+
     //permission messages end
 
 </resources>
