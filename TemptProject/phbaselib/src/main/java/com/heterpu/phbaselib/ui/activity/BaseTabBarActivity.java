@@ -372,6 +372,9 @@ public class BaseTabBarActivity extends BasePermissionActivity {
    }
 
 
+   public void setShowMsgHidden(int position){
+        mTablayout.hideMsg(position);
+   }
 
     public static class TabEntityReal implements CustomTabEntity {
         String title;
