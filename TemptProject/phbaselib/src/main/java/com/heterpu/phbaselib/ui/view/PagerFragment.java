@@ -72,7 +72,7 @@ public class PagerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         isViewCreated = true;
-        if (getUserVisibleHint()) {
+        if (isUIVisible) {
 //            Log.i("ClassNameIs " +  getClass().getSimpleName(),"viewcreate ");
             if (isFirstEnter)configuration();
             isFirstEnter = false;
@@ -94,8 +94,8 @@ public class PagerFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (!isViewCreated)return;
         isUIVisible = isVisibleToUser;
+        if (!isViewCreated)return;
 //        Log.i("ClassNameIs " +  getClass().getSimpleName(),"uservisible ");
         if (isFirstEnter)configuration();
         isFirstEnter = false;
@@ -115,7 +115,6 @@ public class PagerFragment extends Fragment {
      * @param isVisible is fragment visible or not.
      */
     protected  void onFragmentVisibleChange(boolean isVisible){
-
     }
 
 
