@@ -68,7 +68,7 @@ public class TestFragment1 extends PagerFragment {
 
 
     @Override
-    protected int getLayoutId() {
+    protected int getMainLayoutId() {
         return R.layout.fragment_test_fragment1;
     }
 

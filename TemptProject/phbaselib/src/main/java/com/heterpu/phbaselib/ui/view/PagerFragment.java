@@ -12,34 +12,47 @@ import android.view.ViewGroup;
 public class PagerFragment extends Fragment {
 
 
-    //Fragment的View加载完毕的标记
+    /**
+     * Noted when view already created.
+     */
     private boolean isViewCreated;
-    //Fragment对用户可见的标记
-    private boolean isUIVisible;
-    protected View rootView;
-    private boolean isFirstEnter = true;
 
+    /**
+     * Noted when UI visible or not.
+     */
+    private boolean isUIVisible;
+
+    /**
+     * ContentView to hold display.
+     */
+    protected View mContentView;
+
+    /**
+     * Flag first enter.
+     */
+    private boolean isFirstEnter = true;
 
 
     public PagerFragment(){
 
     }
 
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater  inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (rootView != null){
-            return rootView;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if ((mContentView != null)&&(!reloadMainLayoutAfterRecreate())){
+            return mContentView;
         }
-        View view = inflater.inflate(getLayoutId(), container, false);
-        rootView = view;
+        View view = inflater.inflate(getMainLayoutId(), container, false);
+        mContentView = view;
         return view ;
     }
 
 
-    protected int getLayoutId(){
+    protected int getMainLayoutId(){
         return 0;
     }
-
 
 
     @Override
@@ -55,23 +68,11 @@ public class PagerFragment extends Fragment {
     }
 
 
-    private void lazyLoad() {
-        //这里进行双重标记判断,是因为setUserVisibleHint会多次回调,并且会在onCreateView执行前回调,必须确保onCreateView加载完毕且页面可见,才加载数据
-        if (isViewCreated && isUIVisible) {
-            loadData();
-            //数据加载完毕,恢复标记,防止重复加载
-        }
-    }
-
-
-    protected  void loadData(){
-
-    };
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        //页面销毁,恢复标记
+        //Reset flag
         isViewCreated = false;
         isUIVisible = false;
     }
@@ -88,13 +89,30 @@ public class PagerFragment extends Fragment {
         onFragmentVisibleChange(isUIVisible);
     }
 
-
+    /**
+     * For fragment first load configuration.
+     */
     protected void configuration(){
-        Log.i("ClassNameIs " +  getClass().getSimpleName(),"configuration");
+//        Log.i("ClassNameIs " +  getClass().getSimpleName(),"configuration");
     }
 
+
+    /**
+     * Fragment appear or disappear.
+     * @param isVisible is fragment visible or not.
+     */
     protected  void onFragmentVisibleChange(boolean isVisible){
 
     }
+
+
+    /**
+     * Default is false without reload main layout after recreate view.
+     * @return Return true if reload.
+     */
+    protected  boolean reloadMainLayoutAfterRecreate(){
+        return false;
+    }
+
 
 }

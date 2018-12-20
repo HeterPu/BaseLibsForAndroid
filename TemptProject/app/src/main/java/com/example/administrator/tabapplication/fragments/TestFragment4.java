@@ -15,7 +15,7 @@ public class TestFragment4 extends TestFragment1 {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     @Override
-    protected int getLayoutId() {
+    protected int getMainLayoutId() {
         return R.layout.fragment_test_fragment4;
     }
 }
