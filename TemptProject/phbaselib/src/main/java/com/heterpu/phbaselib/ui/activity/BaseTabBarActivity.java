@@ -208,7 +208,6 @@ public class BaseTabBarActivity extends BasePermissionActivity {
         mTablayout.setTabData(mTabEntities);
         initTabBarView();
 
-
         mTablayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
@@ -273,6 +272,18 @@ public class BaseTabBarActivity extends BasePermissionActivity {
         }
     }
 
+
+    public void setTabSelection(int position){
+        int selection = position;
+        if(selection >= getFragments().size()){
+            selection = position - 1;
+        }
+        if (selection == mTablayout.getCurrentTab())return;
+        mTablayout.setCurrentTab(selection);
+        mViewPager.setCurrentItem(selection,getPagerSmoothSwitch());
+        tabSelected(selection,false);
+        pagerSelected(mViewPager,selection);
+    }
 
 
     private void initTabBarView(){
