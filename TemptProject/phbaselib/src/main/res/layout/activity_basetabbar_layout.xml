@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.BaseTabBarActivity"
-    android:background="@color/design_default_color_primary"
+    android:background="#fff"
     >
 
     <com.heterpu.phbaselib.ui.view.NoScrollViewPager
         android:id="@+id/vPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:background="#8122d1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />

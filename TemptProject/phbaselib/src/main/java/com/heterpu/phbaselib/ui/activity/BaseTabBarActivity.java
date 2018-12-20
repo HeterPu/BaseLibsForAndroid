@@ -3,6 +3,7 @@ package com.heterpu.phbaselib.ui.activity;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.heterpu.phbaselib.R;
 import com.heterpu.phbaselib.ui.module.permission.BasePermissionActivity;
 import com.heterpu.phbaselib.ui.view.NoScrollViewPager;
+import com.heterpu.phbaselib.ui.view.PagerFragment;
 import com.heterpu.phbaselib.utils.DisplayUtil;
 import com.heterpu.phbaselib.utils.ViewFindUtils;
 
@@ -283,6 +285,16 @@ public class BaseTabBarActivity extends BasePermissionActivity {
         mViewPager.setCurrentItem(selection,getPagerSmoothSwitch());
         tabSelected(selection,false);
         pagerSelected(mViewPager,selection);
+    }
+
+
+
+    public int getCurrentTabIndex(){
+        return  mTablayout.getCurrentTab();
+    }
+
+    public Fragment getCurrrentFragment(){
+       return  getFragments().get(mTablayout.getCurrentTab());
     }
 
 
