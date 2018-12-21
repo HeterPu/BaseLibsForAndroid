@@ -277,7 +277,7 @@ public class BaseTabBarActivity extends BasePermissionActivity {
 
     public void setTabSelection(int position){
         int selection = position;
-        if(selection >= getFragments().size()){
+        if(selection >= mFragments.size()){
             selection = position - 1;
         }
         if (selection == mTablayout.getCurrentTab())return;
@@ -294,7 +294,7 @@ public class BaseTabBarActivity extends BasePermissionActivity {
     }
 
     public Fragment getCurrrentFragment(){
-       return  getFragments().get(mTablayout.getCurrentTab());
+       return  mFragments.get(mTablayout.getCurrentTab());
     }
 
 
