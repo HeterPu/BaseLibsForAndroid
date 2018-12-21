@@ -1,6 +1,8 @@
 package com.heterpu.phbaselib.ui.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -96,12 +98,12 @@ public class BaseActivity extends AppCompatActivity {
 
 
 
-    protected void goBack(){
+    public void goBack(){
        goBack(true);
     }
 
 
-    protected void goBack(boolean animated){
+    public void goBack(boolean animated){
         // 判断是否是根activity,根activity不返回
         if(!isTaskRoot())
         {
@@ -316,5 +318,24 @@ public class BaseActivity extends AppCompatActivity {
 
     /*   ANIMATION END  */
 
+
+    /**
+     *  If affected by system font size. DEFAULT IS NOT.
+     * @return Return true affected, false not affected.
+     */
+    protected boolean isAffectBySystemFontSizeChange(){
+        return false;
+    }
+
+
+    @Override
+    public Resources getResources() {
+        if (isAffectBySystemFontSizeChange())return super.getResources();
+        Resources res = super.getResources();
+        Configuration config=new Configuration();
+        config.setToDefaults();
+        res.updateConfiguration(config,res.getDisplayMetrics() );
+        return res;
+    }
 
 }
