@@ -103,6 +103,17 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Return to home,exit app without killing it
+     */
+    public void goBackToHome(){
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.addCategory(Intent.CATEGORY_HOME);
+        startActivity(i);
+    }
+
+
     public void goBack(boolean animated){
         // 判断是否是根activity,根activity不返回
         if(!isTaskRoot())

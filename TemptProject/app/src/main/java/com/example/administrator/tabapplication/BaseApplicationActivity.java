@@ -102,10 +102,27 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
     @Override
     public void onBackPressed() {
         // 正在滑动返回的时候取消返回按钮事件
-        if (mSwipeBackHelper.isSliding()) {
+        if (mSwipeBackHelper !=null && mSwipeBackHelper.isSliding()) {
             return;
         }
         goBack();
+    }
+
+    /**
+     * 修复部分手机，按home再点击应用图标会重启BUG，在onCreate方法之后设置，与isFirstStartPage_fixExitHomeAndRestartBug配合使用
+     */
+    private   void fixExitHomeAndRestartBug(){
+        if((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0){
+            finish();
+        }
+    }
+
+    /**
+     * DEFAULT RETURN FALSE, OVERRIDE AND SET FIRST START ACTIVITY TRUE
+     * @return
+     */
+    boolean isFirstStartPage_fixExitHomeAndRestartBug(){
+        return  false;
     }
 
 
@@ -205,6 +222,8 @@ public abstract class BaseApplicationActivity extends BasePermissionActivity imp
 
     protected void configuration(){
          refreshNaviBarAndStatusBarState();
+         // 修复应用进入后台点图标重启bug
+         if(isFirstStartPage_fixExitHomeAndRestartBug())fixExitHomeAndRestartBug();
     }
 
 
