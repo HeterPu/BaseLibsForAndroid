@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.BaseTabBarActivity"
     android:background="#fff"
+    android:id="@+id/vTabPage"
     >
 
     <com.heterpu.phbaselib.ui.view.NoScrollViewPager
